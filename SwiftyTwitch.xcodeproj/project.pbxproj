@@ -7,13 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35A4B49C95F178DBECDF0B47 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BF87694184909D6C4A79 /* Result.swift */; };
 		941D08F020ADF3630001C292 /* SwiftyTwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 941D08EE20ADF3630001C292 /* SwiftyTwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		941D08FF20ADF4990001C292 /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D08F620ADF4980001C292 /* DictionaryDecoder.swift */; };
+		941D090020ADF4990001C292 /* ChannelsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D08F720ADF4990001C292 /* ChannelsHelper.swift */; };
+		941D090120ADF4990001C292 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D08F820ADF4990001C292 /* Channel.swift */; };
+		941D090220ADF4990001C292 /* BaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D08F920ADF4990001C292 /* BaseHelper.swift */; };
+		941D090320ADF4990001C292 /* GamesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D08FA20ADF4990001C292 /* GamesHelper.swift */; };
+		941D090420ADF4990001C292 /* DictionaryCodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D08FB20ADF4990001C292 /* DictionaryCodingKey.swift */; };
+		941D090520ADF4990001C292 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D08FC20ADF4990001C292 /* Errors.swift */; };
+		941D090620ADF4990001C292 /* DictionaryDecodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D08FD20ADF4990001C292 /* DictionaryDecodeError.swift */; };
+		941D090720ADF4990001C292 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D08FE20ADF4990001C292 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		35A4BF87694184909D6C4A79 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		941D08EB20ADF3630001C292 /* SwiftyTwitch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTwitch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941D08EE20ADF3630001C292 /* SwiftyTwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTwitch.h; sourceTree = "<group>"; };
 		941D08EF20ADF3630001C292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		941D08F620ADF4980001C292 /* DictionaryDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
+		941D08F720ADF4990001C292 /* ChannelsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsHelper.swift; sourceTree = "<group>"; };
+		941D08F820ADF4990001C292 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		941D08F920ADF4990001C292 /* BaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseHelper.swift; sourceTree = "<group>"; };
+		941D08FA20ADF4990001C292 /* GamesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesHelper.swift; sourceTree = "<group>"; };
+		941D08FB20ADF4990001C292 /* DictionaryCodingKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryCodingKey.swift; sourceTree = "<group>"; };
+		941D08FC20ADF4990001C292 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		941D08FD20ADF4990001C292 /* DictionaryDecodeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryDecodeError.swift; sourceTree = "<group>"; };
+		941D08FE20ADF4990001C292 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +68,16 @@
 			children = (
 				941D08EE20ADF3630001C292 /* SwiftyTwitch.h */,
 				941D08EF20ADF3630001C292 /* Info.plist */,
+				941D08F920ADF4990001C292 /* BaseHelper.swift */,
+				941D08F820ADF4990001C292 /* Channel.swift */,
+				941D08F720ADF4990001C292 /* ChannelsHelper.swift */,
+				941D08FB20ADF4990001C292 /* DictionaryCodingKey.swift */,
+				941D08FD20ADF4990001C292 /* DictionaryDecodeError.swift */,
+				941D08F620ADF4980001C292 /* DictionaryDecoder.swift */,
+				941D08FC20ADF4990001C292 /* Errors.swift */,
+				941D08FE20ADF4990001C292 /* Game.swift */,
+				941D08FA20ADF4990001C292 /* GamesHelper.swift */,
+				35A4BF87694184909D6C4A79 /* Result.swift */,
 			);
 			path = SwiftyTwitch;
 			sourceTree = "<group>";
@@ -95,6 +125,7 @@
 				TargetAttributes = {
 					941D08EA20ADF3630001C292 = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -130,6 +161,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				941D090320ADF4990001C292 /* GamesHelper.swift in Sources */,
+				941D090720ADF4990001C292 /* Game.swift in Sources */,
+				941D090420ADF4990001C292 /* DictionaryCodingKey.swift in Sources */,
+				941D090620ADF4990001C292 /* DictionaryDecodeError.swift in Sources */,
+				941D08FF20ADF4990001C292 /* DictionaryDecoder.swift in Sources */,
+				941D090120ADF4990001C292 /* Channel.swift in Sources */,
+				941D090220ADF4990001C292 /* BaseHelper.swift in Sources */,
+				941D090020ADF4990001C292 /* ChannelsHelper.swift in Sources */,
+				941D090520ADF4990001C292 /* Errors.swift in Sources */,
+				35A4B49C95F178DBECDF0B47 /* Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +299,7 @@
 		941D08F420ADF3630001C292 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -278,6 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.ryanliang.SwiftyTwitch;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -285,6 +328,7 @@
 		941D08F520ADF3630001C292 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
