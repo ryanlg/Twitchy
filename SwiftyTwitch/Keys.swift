@@ -10,7 +10,7 @@ public struct Keys {
     let auth: String
     let clientID: String
 
-    static var sharedInstance = Keys()
+    fileprivate static var sharedInstance = Keys()
 
     static var shared: Keys {
 
