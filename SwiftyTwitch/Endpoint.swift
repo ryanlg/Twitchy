@@ -6,14 +6,6 @@
 import Foundation
 
 public typealias HTTPHeaders = [String: String]
-public typealias Parameters = [String: Any]
-
-public enum HTTPMethod: String {
-    
-    case options = "OPTIONS"
-    case get = "GET"
-    case post = "POST"
-}
 
 public enum Action {
     
@@ -22,7 +14,7 @@ public enum Action {
     case parameters(parameters: Parameters)
 }
 
-protocol Endpoint {
+public protocol Endpoint {
 
     var baseURL: URL { get }
 
@@ -33,5 +25,25 @@ protocol Endpoint {
     var method: HTTPMethod { get }
 
     var headers: HTTPHeaders? { get }
+}
+
+extension Endpoint {
+
+    public func urlRequest() throws -> URLRequest {
+
+        var request = URLRequest(url: URL(endpoint: self))
+
+        request.httpMethod = method.rawValue
+        request.allHTTPHeaderFields = headers
+
+        switch action {
+        case .plain:
+            return request
+
+        case let .parameters(parameters: params):
+            let encoder = URLEncoding()
+            return try request.encoded(parameters: params, parameterEncoding: encoder)
+        }
+    }
 }
 
