@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+public struct Kraken {
+    
+    public typealias RegularCompletion<Type> = (Result<Type>) -> Void
+}

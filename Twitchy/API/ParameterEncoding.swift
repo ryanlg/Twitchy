@@ -181,7 +181,7 @@ struct URLEncoding: ParameterEncoding {
 
         if let method = HTTPMethod(rawValue: urlRequest.httpMethod ?? "GET"), encodesParametersInURL(with: method) {
             guard let url = urlRequest.url else {
-                throw STError.parameterEncodingFailed(reason: .missingURL)
+                throw TwitchyError.parameterEncodingFailed(reason: .missingURL)
             }
 
             if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), !parameters.isEmpty {
