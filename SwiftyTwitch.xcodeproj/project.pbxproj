@@ -8,16 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		35A4B49C95F178DBECDF0B47 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BF87694184909D6C4A79 /* Result.swift */; };
+		35A4B50DC528ED8E8D26FD54 /* URLRequest+ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BAF466BECF6751079B1B /* URLRequest+ParameterEncoding.swift */; };
 		35A4B590693A482245E43CD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B2E10B8AB1085098C251 /* Endpoint.swift */; };
+		35A4B6957B3C0E56904BD4B7 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */; };
 		35A4BB60E1E85898AD2501AB /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B16CB91EF54BD9A67059 /* Keys.swift */; };
+		35A4BC7DBA5C949864FF3057 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BEC86069BD4CD9EA6EC7 /* Error.swift */; };
 		35A4BD57CD7264CCDA6C842E /* KrekanEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B3931E54CA7212ACDB3E /* KrekanEndpoint.swift */; };
+		35A4BE069874DF7C185A77C8 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B1A1553D7723343D4FE6 /* Provider.swift */; };
+		35A4BF366DAC842E075DBAF6 /* URL+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */; };
 		941D08F020ADF3630001C292 /* SwiftyTwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 941D08EE20ADF3630001C292 /* SwiftyTwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35A4B16CB91EF54BD9A67059 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		35A4B1A1553D7723343D4FE6 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		35A4B2E10B8AB1085098C251 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		35A4B3931E54CA7212ACDB3E /* KrekanEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KrekanEndpoint.swift; sourceTree = "<group>"; };
+		35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Endpoint.swift"; sourceTree = "<group>"; };
+		35A4BAF466BECF6751079B1B /* URLRequest+ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+ParameterEncoding.swift"; sourceTree = "<group>"; };
+		35A4BEC86069BD4CD9EA6EC7 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		35A4BF87694184909D6C4A79 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		941D08EB20ADF3630001C292 /* SwiftyTwitch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTwitch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941D08EE20ADF3630001C292 /* SwiftyTwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTwitch.h; sourceTree = "<group>"; };
@@ -60,6 +70,11 @@
 				35A4B3931E54CA7212ACDB3E /* KrekanEndpoint.swift */,
 				35A4B2E10B8AB1085098C251 /* Endpoint.swift */,
 				35A4B16CB91EF54BD9A67059 /* Keys.swift */,
+				35A4B1A1553D7723343D4FE6 /* Provider.swift */,
+				35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */,
+				35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */,
+				35A4BEC86069BD4CD9EA6EC7 /* Error.swift */,
+				35A4BAF466BECF6751079B1B /* URLRequest+ParameterEncoding.swift */,
 			);
 			path = SwiftyTwitch;
 			sourceTree = "<group>";
@@ -147,6 +162,11 @@
 				35A4BD57CD7264CCDA6C842E /* KrekanEndpoint.swift in Sources */,
 				35A4B590693A482245E43CD0 /* Endpoint.swift in Sources */,
 				35A4BB60E1E85898AD2501AB /* Keys.swift in Sources */,
+				35A4BE069874DF7C185A77C8 /* Provider.swift in Sources */,
+				35A4BF366DAC842E075DBAF6 /* URL+Endpoint.swift in Sources */,
+				35A4B6957B3C0E56904BD4B7 /* ParameterEncoding.swift in Sources */,
+				35A4BC7DBA5C949864FF3057 /* Error.swift in Sources */,
+				35A4B50DC528ED8E8D26FD54 /* URLRequest+ParameterEncoding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
