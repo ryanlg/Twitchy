@@ -5,13 +5,12 @@
 
 import Foundation
 
-public enum ParameterEncodingFailureReason {
-    case missingURL
-    case propertyListEncodingFailed(error: Error)
-}
+public enum STError: Error {
 
-
-enum STError: Error {
+    public enum ParameterEncodingFailureReason {
+        case missingURL
+        case propertyListEncodingFailed(error: Error)
+    }
 
     case parameterEncodingFailed(reason: ParameterEncodingFailureReason)
 }

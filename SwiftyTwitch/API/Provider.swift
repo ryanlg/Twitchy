@@ -5,8 +5,9 @@
 
 import Foundation
 
-open class Provider<Target: Endpoint> {
+class Provider<Target: Endpoint> {
 
+    @discardableResult
     open func getData(_ target: Target, completionHandler: @escaping (Result<Data>) -> Void) -> URLSessionDataTask? {
 
         do {
@@ -33,5 +34,9 @@ open class Provider<Target: Endpoint> {
         }
 
         return nil
+    }
+
+    public init() {
+
     }
 }

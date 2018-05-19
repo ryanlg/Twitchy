@@ -13,7 +13,7 @@
 		35A4B6957B3C0E56904BD4B7 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */; };
 		35A4BB60E1E85898AD2501AB /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B16CB91EF54BD9A67059 /* Keys.swift */; };
 		35A4BC7DBA5C949864FF3057 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BEC86069BD4CD9EA6EC7 /* Error.swift */; };
-		35A4BD57CD7264CCDA6C842E /* KrekanEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B3931E54CA7212ACDB3E /* KrekanEndpoint.swift */; };
+		35A4BD57CD7264CCDA6C842E /* KrakenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */; };
 		35A4BE069874DF7C185A77C8 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B1A1553D7723343D4FE6 /* Provider.swift */; };
 		35A4BF366DAC842E075DBAF6 /* URL+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */; };
 		941D08F020ADF3630001C292 /* SwiftyTwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 941D08EE20ADF3630001C292 /* SwiftyTwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,7 +23,7 @@
 		35A4B16CB91EF54BD9A67059 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		35A4B1A1553D7723343D4FE6 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		35A4B2E10B8AB1085098C251 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		35A4B3931E54CA7212ACDB3E /* KrekanEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KrekanEndpoint.swift; sourceTree = "<group>"; };
+		35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KrakenEndpoint.swift; sourceTree = "<group>"; };
 		35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Endpoint.swift"; sourceTree = "<group>"; };
 		35A4BAF466BECF6751079B1B /* URLRequest+ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+ParameterEncoding.swift"; sourceTree = "<group>"; };
@@ -64,19 +64,59 @@
 		941D08ED20ADF3630001C292 /* SwiftyTwitch */ = {
 			isa = PBXGroup;
 			children = (
+				9474923020B013CA00787289 /* API */,
+				9474922F20B012D800787289 /* Support */,
+			);
+			path = SwiftyTwitch;
+			sourceTree = "<group>";
+		};
+		9474922F20B012D800787289 /* Support */ = {
+			isa = PBXGroup;
+			children = (
 				941D08EE20ADF3630001C292 /* SwiftyTwitch.h */,
 				941D08EF20ADF3630001C292 /* Info.plist */,
-				35A4BF87694184909D6C4A79 /* Result.swift */,
-				35A4B3931E54CA7212ACDB3E /* KrekanEndpoint.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		9474923020B013CA00787289 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9474923320B017DA00787289 /* Endpoints */,
+				94F2320220B0185C00C23E91 /* Util */,
+				9474923120B013EA00787289 /* Abstraction */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		9474923120B013EA00787289 /* Abstraction */ = {
+			isa = PBXGroup;
+			children = (
 				35A4B2E10B8AB1085098C251 /* Endpoint.swift */,
 				35A4B16CB91EF54BD9A67059 /* Keys.swift */,
 				35A4B1A1553D7723343D4FE6 /* Provider.swift */,
 				35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */,
 				35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */,
-				35A4BEC86069BD4CD9EA6EC7 /* Error.swift */,
 				35A4BAF466BECF6751079B1B /* URLRequest+ParameterEncoding.swift */,
 			);
-			path = SwiftyTwitch;
+			name = Abstraction;
+			sourceTree = "<group>";
+		};
+		9474923320B017DA00787289 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */,
+			);
+			name = Endpoints;
+			sourceTree = "<group>";
+		};
+		94F2320220B0185C00C23E91 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				35A4BF87694184909D6C4A79 /* Result.swift */,
+				35A4BEC86069BD4CD9EA6EC7 /* Error.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,7 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35A4B49C95F178DBECDF0B47 /* Result.swift in Sources */,
-				35A4BD57CD7264CCDA6C842E /* KrekanEndpoint.swift in Sources */,
+				35A4BD57CD7264CCDA6C842E /* KrakenEndpoint.swift in Sources */,
 				35A4B590693A482245E43CD0 /* Endpoint.swift in Sources */,
 				35A4BB60E1E85898AD2501AB /* Keys.swift in Sources */,
 				35A4BE069874DF7C185A77C8 /* Provider.swift in Sources */,
@@ -305,7 +345,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = SwiftyTwitch/Info.plist;
+				INFOPLIST_FILE = SwiftyTwitch/Support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -334,7 +374,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = SwiftyTwitch/Info.plist;
+				INFOPLIST_FILE = SwiftyTwitch/Support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

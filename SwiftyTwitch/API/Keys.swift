@@ -7,12 +7,12 @@ import Foundation
 
 public struct Keys {
 
-    let auth: String
-    let clientID: String
+    public let auth: String
+    public let clientID: String
 
     fileprivate static var sharedInstance = Keys()
 
-    static var shared: Keys {
+    public static var shared: Keys {
 
         get {
             return sharedInstance
@@ -23,13 +23,13 @@ public struct Keys {
         }
     }
     
-    init() {
+    public init() {
         
         self.auth = ""
         self.clientID = ""
     }
 
-    init(auth: String, clientID: String) {
+    public init(auth: String, clientID: String) {
 
         self.auth = auth
         self.clientID = clientID

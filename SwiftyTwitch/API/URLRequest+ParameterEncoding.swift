@@ -5,7 +5,7 @@
 
 import Foundation
 
-internal extension URLRequest {
+extension URLRequest {
 
     func encoded(parameters: Parameters, parameterEncoding: ParameterEncoding) throws -> URLRequest {
 

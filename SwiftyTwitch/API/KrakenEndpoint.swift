@@ -5,12 +5,12 @@
 
 import Foundation
 
-enum Kraken {
+enum KrakenEndpoint {
 
     case topGames
 }
 
-extension Kraken: Endpoint {
+extension KrakenEndpoint: Endpoint {
 
     var baseURL: URL {
         return URL(string: "https://api.twitch.tv/kraken")!

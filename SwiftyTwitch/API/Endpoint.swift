@@ -5,16 +5,16 @@
 
 import Foundation
 
-public typealias HTTPHeaders = [String: String]
+typealias HTTPHeaders = [String: String]
 
-public enum Action {
+enum Action {
     
     case plain
     
     case parameters(parameters: Parameters)
 }
 
-public protocol Endpoint {
+protocol Endpoint {
 
     var baseURL: URL { get }
 
@@ -29,7 +29,7 @@ public protocol Endpoint {
 
 extension Endpoint {
 
-    public func urlRequest() throws -> URLRequest {
+    func urlRequest() throws -> URLRequest {
 
         var request = URLRequest(url: URL(endpoint: self))
 
