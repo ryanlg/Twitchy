@@ -5,7 +5,7 @@
 
 import Foundation
 
-public enum STError: Error {
+public enum TwitchyError: Error {
 
     public enum ParameterEncodingFailureReason {
         case missingURL
@@ -13,4 +13,5 @@ public enum STError: Error {
     }
 
     case parameterEncodingFailed(reason: ParameterEncodingFailureReason)
+    case unknown
 }

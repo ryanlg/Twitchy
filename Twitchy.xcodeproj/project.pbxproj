@@ -14,9 +14,11 @@
 		35A4BB60E1E85898AD2501AB /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B16CB91EF54BD9A67059 /* Keys.swift */; };
 		35A4BC7DBA5C949864FF3057 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BEC86069BD4CD9EA6EC7 /* Error.swift */; };
 		35A4BD57CD7264CCDA6C842E /* KrakenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */; };
+		35A4BDBA273F34E1B362F887 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B96D08481FA0EF391C79 /* Game.swift */; };
 		35A4BE069874DF7C185A77C8 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B1A1553D7723343D4FE6 /* Provider.swift */; };
 		35A4BF366DAC842E075DBAF6 /* URL+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */; };
 		941D08F020ADF3630001C292 /* SwiftyTwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 941D08EE20ADF3630001C292 /* SwiftyTwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94F2320520B01F8B00C23E91 /* Kraken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2320420B01F8B00C23E91 /* Kraken.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,12 +28,14 @@
 		35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KrakenEndpoint.swift; sourceTree = "<group>"; };
 		35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Endpoint.swift"; sourceTree = "<group>"; };
+		35A4B96D08481FA0EF391C79 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		35A4BAF466BECF6751079B1B /* URLRequest+ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+ParameterEncoding.swift"; sourceTree = "<group>"; };
 		35A4BEC86069BD4CD9EA6EC7 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		35A4BF87694184909D6C4A79 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		941D08EB20ADF3630001C292 /* SwiftyTwitch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTwitch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		941D08EB20ADF3630001C292 /* Twitchy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Twitchy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941D08EE20ADF3630001C292 /* SwiftyTwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTwitch.h; sourceTree = "<group>"; };
 		941D08EF20ADF3630001C292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94F2320420B01F8B00C23E91 /* Kraken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kraken.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +52,7 @@
 		941D08E120ADF3630001C292 = {
 			isa = PBXGroup;
 			children = (
-				941D08ED20ADF3630001C292 /* SwiftyTwitch */,
+				941D08ED20ADF3630001C292 /* Twitchy */,
 				941D08EC20ADF3630001C292 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,18 +60,20 @@
 		941D08EC20ADF3630001C292 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				941D08EB20ADF3630001C292 /* SwiftyTwitch.framework */,
+				941D08EB20ADF3630001C292 /* Twitchy.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		941D08ED20ADF3630001C292 /* SwiftyTwitch */ = {
+		941D08ED20ADF3630001C292 /* Twitchy */ = {
 			isa = PBXGroup;
 			children = (
+				94F2320620B0215C00C23E91 /* Models */,
 				9474923020B013CA00787289 /* API */,
+				94F2320320B01F7100C23E91 /* Helper */,
 				9474922F20B012D800787289 /* Support */,
 			);
-			path = SwiftyTwitch;
+			path = Twitchy;
 			sourceTree = "<group>";
 		};
 		9474922F20B012D800787289 /* Support */ = {
@@ -119,6 +125,22 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		94F2320320B01F7100C23E91 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				94F2320420B01F8B00C23E91 /* Kraken.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		94F2320620B0215C00C23E91 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				35A4B96D08481FA0EF391C79 /* Game.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -133,9 +155,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		941D08EA20ADF3630001C292 /* SwiftyTwitch */ = {
+		941D08EA20ADF3630001C292 /* Twitchy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 941D08F320ADF3630001C292 /* Build configuration list for PBXNativeTarget "SwiftyTwitch" */;
+			buildConfigurationList = 941D08F320ADF3630001C292 /* Build configuration list for PBXNativeTarget "Twitchy" */;
 			buildPhases = (
 				941D08E620ADF3630001C292 /* Sources */,
 				941D08E720ADF3630001C292 /* Frameworks */,
@@ -146,9 +168,9 @@
 			);
 			dependencies = (
 			);
-			name = SwiftyTwitch;
+			name = Twitchy;
 			productName = SwiftyTwitch;
-			productReference = 941D08EB20ADF3630001C292 /* SwiftyTwitch.framework */;
+			productReference = 941D08EB20ADF3630001C292 /* Twitchy.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -166,7 +188,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 941D08E520ADF3630001C292 /* Build configuration list for PBXProject "SwiftyTwitch" */;
+			buildConfigurationList = 941D08E520ADF3630001C292 /* Build configuration list for PBXProject "Twitchy" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -178,7 +200,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				941D08EA20ADF3630001C292 /* SwiftyTwitch */,
+				941D08EA20ADF3630001C292 /* Twitchy */,
 			);
 		};
 /* End PBXProject section */
@@ -205,8 +227,10 @@
 				35A4BE069874DF7C185A77C8 /* Provider.swift in Sources */,
 				35A4BF366DAC842E075DBAF6 /* URL+Endpoint.swift in Sources */,
 				35A4B6957B3C0E56904BD4B7 /* ParameterEncoding.swift in Sources */,
+				94F2320520B01F8B00C23E91 /* Kraken.swift in Sources */,
 				35A4BC7DBA5C949864FF3057 /* Error.swift in Sources */,
 				35A4B50DC528ED8E8D26FD54 /* URLRequest+ParameterEncoding.swift in Sources */,
+				35A4BDBA273F34E1B362F887 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +369,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = SwiftyTwitch/Support/Info.plist;
+				INFOPLIST_FILE = Twitchy/Support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -353,7 +377,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = io.ryanliang.SwiftyTwitch;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ryanliang.Twitchy;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -374,7 +398,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = SwiftyTwitch/Support/Info.plist;
+				INFOPLIST_FILE = Twitchy/Support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -382,7 +406,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = io.ryanliang.SwiftyTwitch;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ryanliang.Twitchy;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -392,7 +416,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		941D08E520ADF3630001C292 /* Build configuration list for PBXProject "SwiftyTwitch" */ = {
+		941D08E520ADF3630001C292 /* Build configuration list for PBXProject "Twitchy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				941D08F120ADF3630001C292 /* Debug */,
@@ -401,7 +425,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		941D08F320ADF3630001C292 /* Build configuration list for PBXNativeTarget "SwiftyTwitch" */ = {
+		941D08F320ADF3630001C292 /* Build configuration list for PBXNativeTarget "Twitchy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				941D08F420ADF3630001C292 /* Debug */,
