@@ -7,30 +7,32 @@ import Foundation
 
 class Provider<Target: Endpoint> {
 
+    typealias Completion<Type> = (Result<Type>, URLResponse?) -> Void
+
     @discardableResult
-    open func getData(_ target: Target, completionHandler: @escaping (Result<Data>) -> Void) -> URLSessionDataTask? {
+    func getData(_ target: Target, completionHandler: @escaping Completion<Data>) -> URLSessionDataTask? {
 
         do {
 
             let request = try target.urlRequest()
             let task = URLSession.shared.dataTask(with: request) {
 
-                data, request, error in
+                data, response, error in
 
                 if let error = error, let _ = data {
 
-                    completionHandler(Result.failure(error))
+                    completionHandler(Result.failure(error), response)
                     return
                 }
 
-                completionHandler(Result.success(data!))
+                completionHandler(Result.success(data!), response)
             }
 
             task.resume()
             return task
         } catch {
 
-            completionHandler(Result.failure(error))
+            completionHandler(Result.failure(error), nil)
         }
 
         return nil

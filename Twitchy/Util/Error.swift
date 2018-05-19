@@ -13,6 +13,7 @@ public enum TwitchyError: Error {
     }
 
     case parameterEncodingFailed(reason: ParameterEncodingFailureReason)
+    case statusCode(Int, error: String, message: String)
     case APIMismatch(description: String)
     case unknown
 }

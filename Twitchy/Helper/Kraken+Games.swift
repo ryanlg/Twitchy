@@ -11,31 +11,24 @@ extension Kraken {
     @discardableResult
     public static func getTopGames(completion: @escaping RegularCompletion<[Game]>) -> URLSessionDataTask? {
 
-        let provider = Provider<KrakenEndpoint>()
         return provider.getData(.topGames) {
 
-            result in
+            result, response in
 
-            guard result.isSuccess, let data = result.value else {
-
-                if let error = result.error {
-                    completion(Result.failure(error))
-                } else {
-                    completion(Result.failure(TwitchyError.unknown))
-                }
-                return
+            do {
+                try resultCheckRegular(result, response)
+            } catch {
+                completion(Result.failure(error))
             }
-
 
             var jsonObject: Any? = nil
             do {
 
-                jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+                jsonObject = try JSONSerialization.jsonObject(with: result.value!, options: [])
             } catch {
 
                 completion(Result.failure(error))
             }
-
 
             guard let json = jsonObject as? [String: Any] else {
 
