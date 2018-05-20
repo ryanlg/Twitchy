@@ -7,7 +7,13 @@ import Foundation
 
 enum KrakenEndpoint {
 
+    // ----------
+    // Games
     case topGames
+
+    // ----------
+    // Channels
+    case channel(name: String)
 }
 
 extension KrakenEndpoint: Endpoint {
@@ -19,8 +25,11 @@ extension KrakenEndpoint: Endpoint {
     var path: String {
 
         switch self {
+
             case .topGames:
                 return "/games/top"
+            case let .channel(name):
+                return "/channels/\(name)"
         }
     }
 
