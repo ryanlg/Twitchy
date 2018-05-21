@@ -56,7 +56,8 @@ extension KrakenEndpoint: Endpoint {
 
             default:
                 return [
-                    "Client-ID": Keys.shared.clientID
+                    "Client-ID": Keys.shared.clientID,
+                    "Accept:": "application/vnd.twitchtv.v5+json "
                 ]
         }
     }

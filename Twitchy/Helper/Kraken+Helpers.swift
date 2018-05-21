@@ -20,7 +20,7 @@ extension Kraken {
         }
 
         // check optional here so that we can force unwrap after this call
-        // I don't know what error this should be
+        // I don't know what error this should be so leaving it as unknown
         guard let _ = result.value else { throw TwitchyError.unknown }
 
         guard let response = response as? HTTPURLResponse else { throw TwitchyError.unknown }
@@ -29,7 +29,7 @@ extension Kraken {
         let status = response.statusCode
         if status < 200 || status > 300 {
 
-            var jsonAny: Any? = nil
+            var jsonAny: Any? = result.value
             if let jsonData = result.value as? Data {
                 do {
                     jsonAny = try JSONSerialization.jsonObject(with: jsonData)
