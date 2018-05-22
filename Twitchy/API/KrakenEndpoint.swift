@@ -8,6 +8,14 @@ import Foundation
 enum KrakenEndpoint {
 
     // ----------
+    // Auth
+    case oauth2(redirectURL: String,
+                responseType: AuthResponseType,
+                scope: Scopes,
+                forceVerify: Bool?,
+                state: String?)
+
+    // ----------
     // Games
     case topGames
 
@@ -30,12 +38,25 @@ extension KrakenEndpoint: Endpoint {
                 return "/games/top"
             case let .channel(name):
                 return "/channels/\(name)"
+            case .oauth2:
+                return "/oauth2/authorize"
         }
     }
 
     var action: Action {
 
         switch self {
+            case let .oauth2(redirectURL, responseType, scope, forceVerify, state):
+
+                var param: [String: Any] = ["redirect_url": redirectURL,
+                                            "response_type": responseType,
+                                            "scope": scope]
+
+                if let forceVerify = forceVerify { param["force_verify"] = forceVerify }
+                if let state = state { param["state"] = state }
+
+                return .parameters(parameters: param)
+
             default:
                 return .plain
         }
