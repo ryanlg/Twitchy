@@ -103,6 +103,11 @@ public struct Scopes: OptionSet, CustomStringConvertible{
             result += ScopeString.viewingActivityRead.rawValue + "+"
         }
 
+        // remove trailing +
+        if result.endIndex != result.startIndex {
+            result = String(result[..<result.index(before: result.endIndex)])
+        }
+
         return result
     }
 

@@ -9,7 +9,7 @@ enum KrakenEndpoint {
 
     // ----------
     // Auth
-    case oauth2(redirectURL: String,
+    case oauth2(redirectURI: String,
                 responseType: AuthResponseType,
                 scope: Scopes,
                 forceVerify: Bool?,
@@ -46,9 +46,10 @@ extension KrakenEndpoint: Endpoint {
     var action: Action {
 
         switch self {
-            case let .oauth2(redirectURL, responseType, scope, forceVerify, state):
+            case let .oauth2(redirectURI, responseType, scope, forceVerify, state):
 
-                var param: [String: Any] = ["redirect_url": redirectURL,
+                var param: [String: Any] = ["client_id": Keys.shared.clientID,
+                                            "redirect_uri": redirectURI,
                                             "response_type": responseType,
                                             "scope": scope]
 
@@ -74,6 +75,11 @@ extension KrakenEndpoint: Endpoint {
     var headers: HTTPHeaders? {
 
         switch self {
+
+            case .oauth2:
+                return [
+                    "Accept:": "application/vnd.twitchtv.v5+json "
+                ]
 
             default:
                 return [

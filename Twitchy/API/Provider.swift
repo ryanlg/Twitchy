@@ -5,7 +5,13 @@
 
 import Foundation
 
-class Provider<Target: Endpoint> {
+protocol Provider {
+    associatedtype T where T: Endpoint
+}
+
+class RegularProvider<Target: Endpoint>: Provider {
+
+    typealias T = Target
 
     typealias Completion<Type> = (Result<Type>, URLResponse?) -> Void
 

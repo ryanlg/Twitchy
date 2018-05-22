@@ -17,11 +17,13 @@
 		35A4BA15078C608830DC3788 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BB89567E7B4A155FA007 /* Options.swift */; };
 		35A4BB60E1E85898AD2501AB /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B16CB91EF54BD9A67059 /* Keys.swift */; };
 		35A4BC7DBA5C949864FF3057 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BEC86069BD4CD9EA6EC7 /* Error.swift */; };
+		35A4BCA5925E2056BCD22597 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BC726D13CD36957D8498 /* AuthProvider.swift */; };
 		35A4BD57CD7264CCDA6C842E /* KrakenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */; };
 		35A4BDBA273F34E1B362F887 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B96D08481FA0EF391C79 /* Game.swift */; };
 		35A4BE069874DF7C185A77C8 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B1A1553D7723343D4FE6 /* Provider.swift */; };
 		35A4BEA9A28EE6FC997152AD /* Kraken+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B7E63E831CF2E8121989 /* Kraken+Helpers.swift */; };
 		35A4BF366DAC842E075DBAF6 /* URL+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */; };
+		35A4BF3F4CF2B05100E70329 /* Kraken+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B6A2AEE8233431A61743 /* Kraken+Auth.swift */; };
 		941D08F020ADF3630001C292 /* SwiftyTwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 941D08EE20ADF3630001C292 /* SwiftyTwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94DFB04920B02FAF00F948FB /* DictionaryDecodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DFB04620B02FAF00F948FB /* DictionaryDecodeError.swift */; };
 		94DFB04A20B02FAF00F948FB /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DFB04720B02FAF00F948FB /* DictionaryDecoder.swift */; };
@@ -36,6 +38,7 @@
 		35A4B2D5CF26203ECEBDAC26 /* Kraken+Games.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kraken+Games.swift"; sourceTree = "<group>"; };
 		35A4B2E10B8AB1085098C251 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KrakenEndpoint.swift; sourceTree = "<group>"; };
+		35A4B6A2AEE8233431A61743 /* Kraken+Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kraken+Auth.swift"; sourceTree = "<group>"; };
 		35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		35A4B712D0EA08B4E75F80EA /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Endpoint.swift"; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 		35A4B96D08481FA0EF391C79 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		35A4BAF466BECF6751079B1B /* URLRequest+ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+ParameterEncoding.swift"; sourceTree = "<group>"; };
 		35A4BB89567E7B4A155FA007 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		35A4BC726D13CD36957D8498 /* AuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		35A4BEC86069BD4CD9EA6EC7 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		35A4BF87694184909D6C4A79 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		941D08EB20ADF3630001C292 /* Twitchy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Twitchy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				35A4BB89567E7B4A155FA007 /* Options.swift */,
+				35A4BC726D13CD36957D8498 /* AuthProvider.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				35A4B2D5CF26203ECEBDAC26 /* Kraken+Games.swift */,
 				35A4B2B4829E5560B8431410 /* Kraken+Channels.swift */,
 				35A4B7E63E831CF2E8121989 /* Kraken+Helpers.swift */,
+				35A4B6A2AEE8233431A61743 /* Kraken+Auth.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -271,6 +277,8 @@
 				35A4B6AD91BEE7D88509CFFA /* Kraken+Channels.swift in Sources */,
 				35A4BEA9A28EE6FC997152AD /* Kraken+Helpers.swift in Sources */,
 				35A4BA15078C608830DC3788 /* Options.swift in Sources */,
+				35A4BF3F4CF2B05100E70329 /* Kraken+Auth.swift in Sources */,
+				35A4BCA5925E2056BCD22597 /* AuthProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

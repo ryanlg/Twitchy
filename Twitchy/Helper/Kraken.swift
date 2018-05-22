@@ -12,5 +12,5 @@ public struct Kraken {
     
     public typealias RegularCompletion<Type> = (Result<Type>) -> Void
 
-    static let provider = Provider<KrakenEndpoint>()
+    static let regularProvider = RegularProvider<KrakenEndpoint>()
 }

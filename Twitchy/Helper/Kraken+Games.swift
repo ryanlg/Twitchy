@@ -11,7 +11,7 @@ extension Kraken {
     @discardableResult
     public static func getTopGames(completion: @escaping RegularCompletion<[Game]>) -> URLSessionDataTask? {
 
-        return provider.getData(.topGames) {
+        return regularProvider.getData(.topGames) {
 
             result, response in
 

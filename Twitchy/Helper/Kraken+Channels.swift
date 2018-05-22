@@ -9,7 +9,7 @@ extension Kraken {
 
     public static func getChannel(withName name: String, completion: @escaping RegularCompletion<Channel>) {
 
-        provider.getData(.channel(name: name)) {
+        regularProvider.getData(.channel(name: name)) {
 
             result, response in
 
