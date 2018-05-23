@@ -23,6 +23,7 @@
 		35A4BEA9A28EE6FC997152AD /* Kraken+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B7E63E831CF2E8121989 /* Kraken+Helpers.swift */; };
 		35A4BF366DAC842E075DBAF6 /* URL+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */; };
 		35A4BF3F4CF2B05100E70329 /* Kraken+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B6A2AEE8233431A61743 /* Kraken+Auth.swift */; };
+		35A4BFF1E42B5C7326649740 /* PrivateEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B2092AFEF759B20BA5DC /* PrivateEndpoint.swift */; };
 		941D08F020ADF3630001C292 /* SwiftyTwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 941D08EE20ADF3630001C292 /* SwiftyTwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94DFB04920B02FAF00F948FB /* DictionaryDecodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DFB04620B02FAF00F948FB /* DictionaryDecodeError.swift */; };
 		94DFB04A20B02FAF00F948FB /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DFB04720B02FAF00F948FB /* DictionaryDecoder.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		35A4B16CB91EF54BD9A67059 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		35A4B1A1553D7723343D4FE6 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		35A4B2092AFEF759B20BA5DC /* PrivateEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateEndpoint.swift; sourceTree = "<group>"; };
 		35A4B2B4829E5560B8431410 /* Kraken+Channels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kraken+Channels.swift"; sourceTree = "<group>"; };
 		35A4B2D5CF26203ECEBDAC26 /* Kraken+Games.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kraken+Games.swift"; sourceTree = "<group>"; };
 		35A4B2E10B8AB1085098C251 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */,
+				35A4B2092AFEF759B20BA5DC /* PrivateEndpoint.swift */,
 			);
 			name = Endpoints;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				35A4BEA9A28EE6FC997152AD /* Kraken+Helpers.swift in Sources */,
 				35A4BA15078C608830DC3788 /* Options.swift in Sources */,
 				35A4BF3F4CF2B05100E70329 /* Kraken+Auth.swift in Sources */,
+				35A4BFF1E42B5C7326649740 /* PrivateEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
