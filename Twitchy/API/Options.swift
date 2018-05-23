@@ -13,6 +13,7 @@ public enum AuthType {
 public enum AuthResponseType: String {
 
     case code
+    case token
 }
 
 public struct Scopes: OptionSet, CustomStringConvertible{
@@ -134,28 +135,3 @@ public struct Scopes: OptionSet, CustomStringConvertible{
         case viewingActivityRead = "viewing_activity_read"
     }
 }
-
-//public enum Scope: String, CustomStringConvertible {
-//
-//    case channelCheckSubscription = "channel_check_subscription"
-//    case channelCommercial = "channelCommercial "
-//    case channelEditor = "channel_editor"
-//    case channelFeedEdit = "channel_feed_edit"
-//    case channelFeedRead = "channel_feed_read"
-//    case channelRead = "channel_read"
-//    case channelStream = "channel_stream"
-//    case channelSubscriptions = "channel_subscriptions"
-//    case chatLogin = "chat_login"
-//    case collectionsEdit = "collections_edit"
-//    case communitiesEdit = "communities_edit"
-//    case communitiesModerate = "communities_moderate"
-//    case openid = "openid"
-//    case userBlocksEdit = "user_blocks_edit"
-//    case userBlocksRead = "user_blocks_read"
-//    case userFollowsEdit = "user_follows_edit"
-//    case userRead = "user_read"
-//    case userSubscriptions = "user_subscriptions"
-//    case viewingActivityRead = "viewing_activity_read"
-//
-//    public var description: String { return self.rawValue }
-//}

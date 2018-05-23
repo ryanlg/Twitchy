@@ -10,7 +10,7 @@ extension Kraken {
 
     public static func oauth2AbsoluteURL(redirectURI: String,
                                          scope: Scopes,
-                                         responseType: AuthResponseType = .code,
+                                         responseType: AuthResponseType = .token,
                                          forceVerify: Bool? = nil,
                                          state: String? = nil) -> URL {
 
@@ -33,7 +33,7 @@ extension Kraken {
     // @todo: add ios solution
     public static func oauth2(redirectURI: String,
                               scope: Scopes,
-                              responseType: AuthResponseType = .code,
+                              responseType: AuthResponseType = .token,
                               forceVerify: Bool? = nil,
                               state: String? = nil) {
 
