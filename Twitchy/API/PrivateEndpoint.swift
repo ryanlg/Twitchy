@@ -5,36 +5,34 @@
 
 import Foundation
 
-enum Private {
+enum PrivateEndpoint {
 
-    enum Stream {
 
-        case accessToken(forChannel: String)
-    }
+    case streamAccessToken(forChannel: String)
 }
 
-extension Private.Stream: Endpoint {
+extension PrivateEndpoint: Endpoint {
 
     var baseURL: URL {
 
         switch self {
-            case .accessToken:
-                return URL(string: "https://api.twitch.tv/api/")!
+            case .streamAccessToken:
+                return URL(string: "https://api.twitch.tv/api")!
         }
     }
 
     var path: String {
 
         switch self {
-            case let .accessToken(forChannel: channel):
-                return "/channel/\(channel)/access_token"
+            case let .streamAccessToken(forChannel: channel):
+                return "/channels/\(channel)/access_token"
         }
     }
 
     var action: Action {
 
         switch self {
-            case .accessToken:
+            case .streamAccessToken:
                 return .parameters(parameters: [
                     "client_id": Keys.shared.clientID
                 ])
@@ -52,7 +50,7 @@ extension Private.Stream: Endpoint {
     var headers: HTTPHeaders? {
 
         switch self {
-            case .accessToken:
+            case .streamAccessToken:
                 return [:]
         }
     }
