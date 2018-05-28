@@ -5,6 +5,7 @@
 
 import Foundation
 
+/// Private helpers
 public class Private {
 
     public typealias RegularCompletion<Type> = (Result<Type>) -> Void

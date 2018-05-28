@@ -5,12 +5,14 @@
 
 import Foundation
 
+/// Private endpoint
 enum PrivateEndpoint {
 
     case streamAccessToken(forChannel: String)
     case streamPlaylist(forChannel: String, token: String, signature: String)
 }
 
+/// Conform to endpoint
 extension PrivateEndpoint: Endpoint {
 
     var baseURL: URL {

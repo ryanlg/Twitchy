@@ -8,6 +8,8 @@ import Cocoa
 
 extension Kraken {
 
+    /// Returns the absolute URL for oauth
+    /// You can use this to construct a URL to open in local browser
     public static func oauth2AbsoluteURL(redirectURI: String,
                                          scope: Scopes,
                                          responseType: AuthResponseType = .token,
@@ -28,22 +30,5 @@ extension Kraken {
             // should not happen
             fatalError(error.localizedDescription)
         }
-    }
-
-    // @todo: add ios solution
-    public static func oauth2(redirectURI: String,
-                              scope: Scopes,
-                              responseType: AuthResponseType = .token,
-                              forceVerify: Bool? = nil,
-                              state: String? = nil) {
-
-
-        let url = oauth2AbsoluteURL(redirectURI: redirectURI,
-                                    scope: scope,
-                                    responseType: responseType,
-                                    forceVerify: forceVerify,
-                                    state: state)
-
-        NSWorkspace.shared.open(url)
     }
 }

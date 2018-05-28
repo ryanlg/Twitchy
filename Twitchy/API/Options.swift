@@ -5,17 +5,22 @@
 
 import Foundation
 
+/// Type of authorization
+/// * Only has oauth2 for now *
 public enum AuthType {
 
     case oauth2
 }
 
+/// Type of response that Twitch should return during authorization
 public enum AuthResponseType: String {
 
     case code
     case token
 }
 
+/// Scope of authorization
+/// See: https://dev.twitch.tv/docs/authentication#scopes
 public struct Scopes: OptionSet, CustomStringConvertible{
 
     public let rawValue: UInt32
@@ -112,6 +117,7 @@ public struct Scopes: OptionSet, CustomStringConvertible{
         return result
     }
 
+    /// Translate camel case to snake case for actual parameters
     private enum ScopeString: String {
 
         case channelCheckSubscription = "channel_check_subscription"

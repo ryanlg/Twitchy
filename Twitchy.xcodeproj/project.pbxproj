@@ -176,7 +176,7 @@
 			name = Auth;
 			sourceTree = "<group>";
 		};
-		94F2320320B01F7100C23E91 /* Helper */ = {
+		94E544DD20BC266B00445E0F /* Kraken */ = {
 			isa = PBXGroup;
 			children = (
 				94F2320420B01F8B00C23E91 /* Kraken.swift */,
@@ -184,6 +184,14 @@
 				35A4B2B4829E5560B8431410 /* Kraken+Channels.swift */,
 				35A4B7E63E831CF2E8121989 /* Kraken+Helpers.swift */,
 				35A4B6A2AEE8233431A61743 /* Kraken+Auth.swift */,
+			);
+			path = Kraken;
+			sourceTree = "<group>";
+		};
+		94F2320320B01F7100C23E91 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				94E544DD20BC266B00445E0F /* Kraken */,
 				35A4BF17E5A8C438C32980F4 /* Private */,
 			);
 			path = Helper;

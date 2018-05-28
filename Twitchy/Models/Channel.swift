@@ -5,6 +5,7 @@
 
 import Foundation
 
+/// Represents a channel returned from Kraken API
 public struct Channel: Decodable {
 
     let id: Int

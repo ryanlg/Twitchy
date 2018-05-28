@@ -5,6 +5,7 @@
 
 import Foundation
 
+/// Represents the JSON returned when requesting stream access token
 public struct AccessToken {
 
     public let token: String

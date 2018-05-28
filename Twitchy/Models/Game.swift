@@ -5,9 +5,7 @@
 
 import Foundation
 
-/*
-   This struct represent a Game object, with modification for a more intuitive interface from Twitch's JSON.
-*/
+// This struct represent a Game object, with modification for a more intuitive interface from Twitch's JSON.
 public struct Game {
 
     let id: Int
@@ -26,9 +24,7 @@ public struct Game {
     // Omitted "logo" and "_links" field because it is empty for most games
 }
 
-/*
-   This struct encapsulates four addresses with different size of the game's art
-*/
+/// This struct encapsulates four addresses with different size of the game's art
 public struct BoxArt{
 
     let large: String // 272x380
@@ -43,8 +39,6 @@ public struct BoxArt{
         return "\(segment)-\(width)x\(height).jpg"
     }
 }
-
-// ------------- JSON Decode --------------
 
 extension Game: Decodable {
 

@@ -5,6 +5,7 @@
 
 import Foundation
 
+/// Errors
 public enum TwitchyError: Error {
 
     public enum ParameterEncodingFailureReason {

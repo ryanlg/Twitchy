@@ -7,6 +7,8 @@ import Foundation
 
 extension Kraken {
 
+    /// Get channel infos
+    /// This is just for infos. For stream data, see private APIs
     public static func getChannel(withName name: String, completion: @escaping RegularCompletion<Channel>) {
 
         regularProvider.getData(.channel(name: name)) {

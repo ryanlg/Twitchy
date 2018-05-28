@@ -5,10 +5,15 @@
 
 import Foundation
 
+/// Represents the protocol that a Provider has to conform to
+// @todo: do I actually need this
 protocol Provider {
+
+    /// Associated endpoint type
     associatedtype T where T: Endpoint
 }
 
+/// A regular provider
 class RegularProvider<Target: Endpoint>: Provider {
 
     typealias T = Target
@@ -44,7 +49,5 @@ class RegularProvider<Target: Endpoint>: Provider {
         return nil
     }
 
-    public init() {
-
-    }
+    public init() {}
 }

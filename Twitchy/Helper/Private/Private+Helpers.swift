@@ -5,10 +5,14 @@
 
 import Foundation
 
-// Helpers, not API related
+/// Helpers, not API related
 extension Private {
 
-    internal static func resultCheckRegular<Type>(_ result: Result<Type>, _ response: URLResponse?) throws {
+    /// Check the result whether it
+    /// 1. has any error
+    /// 2. has no error but has no value
+    /// 3. has no error, has value, but wrong status code (Twitch returned error JSON)
+    internal static func resultValidateRegular<Type>(_ result: Result<Type>, _ response: URLResponse?) throws {
 
         if result.isFailure {
 
@@ -47,7 +51,12 @@ extension Private {
         }
     }
 
-    internal static func resultCheckPlaylist<Type>(_ result: Result<Type>, _ response: URLResponse?) throws {
+    /// Check the result whether it
+    /// 1. has any error
+    /// 2. has no error but has no value
+    /// 3. has no error, has value, but wrong status code (Twitch returned error HTML)
+    /// * This method is specifically for validating playlist
+    internal static func resultValidatePlaylist<Type>(_ result: Result<Type>, _ response: URLResponse?) throws {
 
         if result.isFailure {
 
@@ -84,11 +93,10 @@ extension Private {
 
                 throw TwitchyError.responseCheck(reason: .messageParsingFailed(payload: "\(response)"))
             }
-
-//            throw TwitchyError.statusCode(status, error: error, message: message)
         }
     }
 
+    /// Parsing playlist error html
     private static func parsePlaylistErrorHTML(_ html: String) throws -> (String, String) {
 
         // getting url

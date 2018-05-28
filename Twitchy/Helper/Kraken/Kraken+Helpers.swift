@@ -5,7 +5,7 @@
 
 import Foundation
 
-// Helpers, not API related
+/// Kraken helpers, not API related
 extension Kraken {
 
     internal static func resultCheckRegular<Type>(_ result: Result<Type>, _ response: URLResponse?) throws {

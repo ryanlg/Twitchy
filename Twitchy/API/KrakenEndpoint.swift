@@ -5,6 +5,8 @@
 
 import Foundation
 
+/// Kraken Endpoint
+/// This is expected to be removed by Twitch on 12/31/18
 enum KrakenEndpoint {
 
     // ----------
@@ -24,6 +26,7 @@ enum KrakenEndpoint {
     case channel(name: String)
 }
 
+/// Conform to endpoint
 extension KrakenEndpoint: Endpoint {
 
     var baseURL: URL {
@@ -77,6 +80,7 @@ extension KrakenEndpoint: Endpoint {
         switch self {
 
             case .oauth2:
+                // put client id into url parameter not header
                 return [
                     "Accept:": "application/vnd.twitchtv.v5+json "
                 ]

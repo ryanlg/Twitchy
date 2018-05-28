@@ -5,6 +5,7 @@
 
 import Foundation
 
+/// Initialize a URL from an endpoint
 extension URL {
 
     init(endpoint: Endpoint) {

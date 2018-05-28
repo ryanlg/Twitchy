@@ -5,13 +5,20 @@
 
 import Foundation
 
+/// Represent Twitch keys related data
 public struct Keys {
 
-    public let auth: String
+    /// User Auth Token
+    public let auth: String?
+
+    /// Client ID
+    /// This has to be non-null, since all API endpoints require this
     public let clientID: String
 
-    fileprivate static var sharedInstance = Keys()
+    /// Singleton
+    private static var sharedInstance = Keys()
 
+    /// Shared
     public static var shared: Keys {
 
         get {

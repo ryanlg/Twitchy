@@ -5,8 +5,11 @@
 
 import Foundation
 
+/// Access Token & Playlist related
 extension Private {
 
+    /// Get stream access token
+    /// Returns a AccessToken struct
     public static func getStreamAccessToken(forChannel: String, completion: @escaping RegularCompletion<AccessToken>) {
 
         regularProvider.getData(.streamAccessToken(forChannel: forChannel)) {
@@ -14,7 +17,7 @@ extension Private {
             result, response in
 
             do {
-                try resultCheckRegular(result, response)
+                try resultValidateRegular(result, response)
             } catch {
                 completion(Result.failure(error))
                 return
@@ -38,6 +41,8 @@ extension Private {
     }
 
 
+    /// Get stream .m3u playlist
+    /// This playlist is the one with locations of different bitrate of streams
     public static func getStreamPlaylist(forChannel: String,
                                          token: String,
                                          signature: String,
@@ -50,7 +55,7 @@ extension Private {
             result, response in
 
             do {
-                try resultCheckPlaylistHTML(result, response)
+                try resultValidatePlaylist(result, response)
             } catch {
                 completion(Result.failure(error))
                 return

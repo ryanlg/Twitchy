@@ -5,9 +5,10 @@
 
 import Foundation
 
-// Games
+/// Games related
 extension Kraken {
 
+    /// Get a list of Game struct with top games across Twitch
     @discardableResult
     public static func getTopGames(completion: @escaping RegularCompletion<[Game]>) -> URLSessionDataTask? {
 
