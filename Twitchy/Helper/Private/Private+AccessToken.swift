@@ -36,4 +36,27 @@ extension Private {
             }
         }
     }
+
+
+    public static func getStreamPlaylist(forChannel: String,
+                                         token: String,
+                                         signature: String,
+                                         completion: @escaping RegularCompletion<Data>) {
+
+        regularProvider.getData(.streamPlaylist(forChannel: forChannel,
+                                                token: token,
+                                                signature: signature)) {
+
+            result, response in
+
+            do {
+                try resultCheckRegular(result, response)
+            } catch {
+                completion(Result.failure(error))
+                return
+            }
+
+            completion(Result.success(result.value!))
+        }
+    }
 }

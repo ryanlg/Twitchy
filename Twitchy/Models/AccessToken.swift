@@ -7,8 +7,8 @@ import Foundation
 
 public struct AccessToken {
 
-    let token: String
-    let signature: String
+    public let token: String
+    public let signature: String
     // let mobileRestricted: Bool // Commented since it seems unused
 }
 

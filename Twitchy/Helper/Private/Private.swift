@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Private {
+public class Private {
 
     public typealias RegularCompletion<Type> = (Result<Type>) -> Void
 
