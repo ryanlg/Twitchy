@@ -15,17 +15,15 @@ extension Kraken {
             if result.error != nil {
                 throw result.error!
             } else  {
-                throw TwitchyError.unknown
+                throw TwitchyError.responseCheck(reason: .missingError)
             }
         }
 
-        // check optional here so that we can force unwrap after this call
-        // I don't know what error this should be so leaving it as unknown
-        guard let _ = result.value else { throw TwitchyError.unknown }
+        // check optional here so that we can force unwrap it after this call
+        guard let _ = result.value else { throw TwitchyError.responseCheck(reason: .missingValue) }
 
-        guard let response = response as? HTTPURLResponse else { throw TwitchyError.unknown }
+        guard let response = response as? HTTPURLResponse else { throw TwitchyError.responseCheck(reason: .missingResponse) }
 
-        // @todo: refine status code logic
         let status = response.statusCode
         if status < 200 || status > 300 {
 
@@ -34,15 +32,17 @@ extension Kraken {
                 do {
                     jsonAny = try JSONSerialization.jsonObject(with: jsonData)
                 } catch {
-                    throw TwitchyError.unknown
+                    throw TwitchyError.responseCheck(reason: .messageParsingFailed(payload: "\(response)"))
                 }
             }
+
             guard let json = jsonAny as? [String: Any],
                   let error = json["error"] as? String,
                   let message = json["message"] as? String else {
 
-                throw TwitchyError.unknown
+                throw TwitchyError.responseCheck(reason: .messageParsingFailed(payload: "\(response)"))
             }
+
             throw TwitchyError.statusCode(status, error: error, message: message)
         }
     }
