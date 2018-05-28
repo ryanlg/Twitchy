@@ -50,7 +50,7 @@ extension Private {
             result, response in
 
             do {
-                try resultCheckRegular(result, response)
+                try resultCheckPlaylistHTML(result, response)
             } catch {
                 completion(Result.failure(error))
                 return

@@ -12,8 +12,20 @@ public enum TwitchyError: Error {
         case propertyListEncodingFailed(error: Error)
     }
 
+    public enum ResponseCheckFailureReason {
+
+        case missingError
+        case missingValue
+        case missingResponse
+
+        case messageParsingFailed(payload: String)
+    }
+
     case parameterEncodingFailed(reason: ParameterEncodingFailureReason)
     case statusCode(Int, error: String, message: String)
     case APIMismatch(description: String)
+
+    case responseCheck(reason: ResponseCheckFailureReason)
+
     case unknown
 }
