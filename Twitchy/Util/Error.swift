@@ -8,6 +8,8 @@ import Foundation
 /// Errors
 public enum TwitchyError: Error {
 
+    // ========================
+    // Networking
     public enum ParameterEncodingFailureReason {
         case missingURL
         case propertyListEncodingFailed(error: Error)
@@ -27,6 +29,20 @@ public enum TwitchyError: Error {
     case APIMismatch(description: String)
 
     case responseCheck(reason: ResponseCheckFailureReason)
+
+    // ========================
+    // Parsing
+
+    public enum ParsingFailureReason {
+
+        case invalidHeader
+        case missingStarting
+        case missingEnding
+        case conversionFailedAfterExtraction
+        case noSuchKey
+    }
+
+    case playlistParsing(reason: ParsingFailureReason)
 
     case unknown
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35A4B09FD51A03AD82BA9147 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B1CE8D2A2D6FBBC5BFB0 /* Stream.swift */; };
+		35A4B30C8EF0E1D9A7B02929 /* M3UParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BB8549747D8E097E3896 /* M3UParser.swift */; };
 		35A4B3246D8D9111A5104015 /* Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B4199EDFA2AB3C45735C /* Private.swift */; };
 		35A4B43CE96DAEAF1539CEC0 /* Kraken+Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B2D5CF26203ECEBDAC26 /* Kraken+Games.swift */; };
 		35A4B49C95F178DBECDF0B47 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BF87694184909D6C4A79 /* Result.swift */; };
@@ -38,6 +40,7 @@
 /* Begin PBXFileReference section */
 		35A4B16CB91EF54BD9A67059 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		35A4B1A1553D7723343D4FE6 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		35A4B1CE8D2A2D6FBBC5BFB0 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 		35A4B2092AFEF759B20BA5DC /* PrivateEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateEndpoint.swift; sourceTree = "<group>"; };
 		35A4B2538DC456E0F2EF10BD /* Private+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Private+Helpers.swift"; sourceTree = "<group>"; };
 		35A4B2B4829E5560B8431410 /* Kraken+Channels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kraken+Channels.swift"; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		35A4B7E63E831CF2E8121989 /* Kraken+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kraken+Helpers.swift"; sourceTree = "<group>"; };
 		35A4B96D08481FA0EF391C79 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		35A4BAF466BECF6751079B1B /* URLRequest+ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+ParameterEncoding.swift"; sourceTree = "<group>"; };
+		35A4BB8549747D8E097E3896 /* M3UParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M3UParser.swift; sourceTree = "<group>"; };
 		35A4BB89567E7B4A155FA007 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		35A4BC22CFA67B2107C4B0AA /* Private+AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Private+AccessToken.swift"; sourceTree = "<group>"; };
 		35A4BD91C8743883DA6B7FE1 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 		94DFB04620B02FAF00F948FB /* DictionaryDecodeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryDecodeError.swift; sourceTree = "<group>"; };
 		94DFB04720B02FAF00F948FB /* DictionaryDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
 		94DFB04820B02FAF00F948FB /* DictionaryCodingKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryCodingKey.swift; sourceTree = "<group>"; };
+		94E544F920BD7C7C00445E0F /* Twitchy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitchy.framework; path = ../Twift/Carthage/Build/Mac/Twitchy.framework; sourceTree = "<group>"; };
 		94F2320420B01F8B00C23E91 /* Kraken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kraken.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +97,7 @@
 			children = (
 				941D08ED20ADF3630001C292 /* Twitchy */,
 				941D08EC20ADF3630001C292 /* Products */,
+				94E544F820BD7C7C00445E0F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +117,7 @@
 				9474923020B013CA00787289 /* API */,
 				94F2320320B01F7100C23E91 /* Helper */,
 				9474922F20B012D800787289 /* Support */,
+				35A4BB8549747D8E097E3896 /* M3UParser.swift */,
 			);
 			path = Twitchy;
 			sourceTree = "<group>";
@@ -188,6 +195,14 @@
 			path = Kraken;
 			sourceTree = "<group>";
 		};
+		94E544F820BD7C7C00445E0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94E544F920BD7C7C00445E0F /* Twitchy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		94F2320320B01F7100C23E91 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +218,7 @@
 				35A4B96D08481FA0EF391C79 /* Game.swift */,
 				35A4B712D0EA08B4E75F80EA /* Channel.swift */,
 				35A4BD91C8743883DA6B7FE1 /* AccessToken.swift */,
+				35A4B1CE8D2A2D6FBBC5BFB0 /* Stream.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,6 +327,8 @@
 				35A4B3246D8D9111A5104015 /* Private.swift in Sources */,
 				35A4B6F766455AB134E3CFAF /* Private+AccessToken.swift in Sources */,
 				35A4BB4C21679FE2A2510FC8 /* Private+Helpers.swift in Sources */,
+				35A4B30C8EF0E1D9A7B02929 /* M3UParser.swift in Sources */,
+				35A4B09FD51A03AD82BA9147 /* Stream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
