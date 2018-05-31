@@ -40,9 +40,6 @@ public enum TwitchyError: Error {
         case missingEnding
         case conversionFailedAfterExtraction
         case noSuchKey
-        case missingSharp
-
-        case unexpectedSyntax
     }
 
     case playlistParsing(reason: ParsingFailureReason)
