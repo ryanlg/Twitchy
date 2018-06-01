@@ -12,20 +12,20 @@ public struct M3UParser {
     public static func parseTwitchStreamPlaylist(fromData data: Data) throws -> Stream {
 
         // unicode
-        let sharp: UInt8 = 35
-        let newline: UInt8 = 10
-        let comma: UInt8 = 44
-        let equalQuoteStart: [UInt8] = [61, 34] // "=\""
-        let equalStart: [UInt8] = [61] // "="
+        let sharp: UInt8 = 35 // "#"
+        let newline: UInt8 = 10 // "\n"
+        let comma: UInt8 = 44 // ","
+        let equalQuote: [UInt8] = [61, 34] // "=\""
+        let equal: [UInt8] = [61] // "="
         let quote: UInt8 = 34 // just a quote
 
         let header: [UInt8] = [35, 69, 88, 84, 77, 51, 85] // "#EXTM3U"
         let BROADCAST_ID: [UInt8] = [66, 82, 79, 65, 68, 67, 65, 83, 84, 45, 73, 68] // "BROADCAST-ID"
-        let STREAM_TIME: [UInt8] = [83, 84, 82, 69, 65, 77, 45, 84, 73, 77, 69] //" STREAM-TIME"
+        let STREAM_TIME: [UInt8] = [83, 84, 82, 69, 65, 77, 45, 84, 73, 77, 69] // "STREAM-TIME"
 
-        let videoHeader: [UInt8] = [35, 69, 88, 84, 45, 88, 45, 77, 69, 68, 73, 65]
-        let bandwidth: [UInt8] = [66, 65, 78, 68, 87, 73, 68, 84, 72]
-        let video: [UInt8] = [86, 73, 68, 69, 79]
+        let videoHeader: [UInt8] = [35, 69, 88, 84, 45, 88, 45, 77, 69, 68, 73, 65] // "#EXT-X-TWITCH-INFO"
+        let bandwidth: [UInt8] = [66, 65, 78, 68, 87, 73, 68, 84, 72] // "BANDWIDTH"
+        let video: [UInt8] = [86, 73, 68, 69, 79] // "VIDEO"
 
         // second line, get live duration
         return try data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> Stream in
@@ -43,7 +43,7 @@ public struct M3UParser {
             // ============= Stream time ================
             let streamTimeResult = try checkAndExtract(in: pointer,
                                                        key:STREAM_TIME,
-                                                       starting: equalQuoteStart,
+                                                       starting: equalQuote,
                                                        ending: quote,
                                                        deliminator: comma,
                                                        barrier: newline)
@@ -58,7 +58,7 @@ public struct M3UParser {
             // ============= id ================
             let id = try checkAndExtract(in: pointer,
                     key:BROADCAST_ID,
-                    starting: equalQuoteStart,
+                    starting: equalQuote,
                     ending: quote,
                     deliminator: comma,
                     barrier: newline)
@@ -69,8 +69,9 @@ public struct M3UParser {
                 throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
             }
 
+            // ============= Get different qualities of streams ================
             var list = [Transcode]()
-            pointer = try advance(pointer: pointer, after: newline, barrier: nil) // nextline
+            pointer = try advance(pointer: pointer, after: newline, barrier: nil) // next line
             while true {
 
                 do {
@@ -79,14 +80,26 @@ public struct M3UParser {
                     if result.0 {
                         pointer = try advance(pointer: pointer, after: newline, barrier: nil) //next line
 
-                        let bandwidth = try checkAndExtract(in: pointer, key: bandwidth, starting: equalStart, ending: comma, deliminator: comma, barrier: newline)
+                        // BANDWIDTH of stream: "23423333"
+                        let bandwidth = try checkAndExtract(in: pointer,
+                                                            key: bandwidth,
+                                                            starting: equal,
+                                                            ending: comma,
+                                                            deliminator: comma,
+                                                            barrier: newline)
                         let bwData = Data(bytes: bandwidth)
                         guard let bandwidthString = String(data: bwData, encoding: .utf8),
                               let bwInt = Int(bandwidthString) else {
                             throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
                         }
 
-                        let video = try checkAndExtract(in: pointer, key: video, starting: equalQuoteStart, ending: quote, deliminator: comma, barrier: newline)
+                        // VIDEO quality of stream: "720p60"
+                        let video = try checkAndExtract(in: pointer,
+                                                        key: video,
+                                                        starting: equalQuote,
+                                                        ending: quote,
+                                                        deliminator: comma,
+                                                        barrier: newline)
                         let vData = Data(bytes: video)
                         guard let vString = String(data: vData, encoding: .utf8) else {
                             throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
@@ -94,6 +107,7 @@ public struct M3UParser {
 
                         pointer = try advance(pointer: pointer, after: newline, barrier: nil) //next line
 
+                        // location, get the entire line, no barrier
                         let url = try extract(from: pointer, until: newline, barrier: nil)
                         let urlData = Data(bytes: url.0)
                         guard let urlString = String(data: urlData, encoding: .utf8),
@@ -101,12 +115,14 @@ public struct M3UParser {
                             throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
                         }
 
+                        // extract has already advanced the pointer for us, no need to re-traverse the line again
                         pointer = url.1
 
                         list.append(Transcode(quality: vString, url: URL, bandwidth: bwInt))
-                        pointer = try advance(pointer: pointer, after: newline, barrier: nil)
+                        pointer = try advance(pointer: pointer, after: newline, barrier: nil) // next stream if possible
                     }
                 } catch UnsafeBoundedPointerError.outOfBounds {
+                    // loop until the end of the bounded pointer
                     break
                 }
             }
