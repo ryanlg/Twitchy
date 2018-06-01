@@ -15,12 +15,17 @@ public struct M3UParser {
         let sharp: UInt8 = 35
         let newline: UInt8 = 10
         let comma: UInt8 = 44
-        let start: [UInt8] = [61, 34] // "=\""
+        let equalQuoteStart: [UInt8] = [61, 34] // "=\""
+        let equalStart: [UInt8] = [61] // "="
         let quote: UInt8 = 34 // just a quote
 
         let header: [UInt8] = [35, 69, 88, 84, 77, 51, 85] // "#EXTM3U"
         let BROADCAST_ID: [UInt8] = [66, 82, 79, 65, 68, 67, 65, 83, 84, 45, 73, 68] // "BROADCAST-ID"
         let STREAM_TIME: [UInt8] = [83, 84, 82, 69, 65, 77, 45, 84, 73, 77, 69] //" STREAM-TIME"
+
+        let videoHeader: [UInt8] = [35, 69, 88, 84, 45, 88, 45, 77, 69, 68, 73, 65]
+        let bandwidth: [UInt8] = [66, 65, 78, 68, 87, 73, 68, 84, 72]
+        let video: [UInt8] = [86, 73, 68, 69, 79]
 
         // second line, get live duration
         return try data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> Stream in
@@ -30,7 +35,7 @@ public struct M3UParser {
             // ============= HEADER VALIDATION ===========
             let headerCheck = try checkSequence(in: pointer, against: header, barrier: newline)
             if !headerCheck.0 { throw TwitchyError.playlistParsing(reason: .invalidHeader) }
-            pointer = try advance(pointer: headerCheck.1, after: newline, barrier: nil)
+            pointer = try advance(pointer: headerCheck.1, after: newline, barrier: nil) // next line
 
             // ============= Second Line ================
             pointer = try advance(pointer: pointer, after: sharp, barrier: newline)
@@ -38,7 +43,7 @@ public struct M3UParser {
             // ============= Stream time ================
             let streamTimeResult = try checkAndExtract(in: pointer,
                                                        key:STREAM_TIME,
-                                                       starting: start,
+                                                       starting: equalQuoteStart,
                                                        ending: quote,
                                                        deliminator: comma,
                                                        barrier: newline)
@@ -53,7 +58,7 @@ public struct M3UParser {
             // ============= id ================
             let id = try checkAndExtract(in: pointer,
                     key:BROADCAST_ID,
-                    starting: start,
+                    starting: equalQuoteStart,
                     ending: quote,
                     deliminator: comma,
                     barrier: newline)
@@ -64,9 +69,53 @@ public struct M3UParser {
                 throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
             }
 
-            // @todo: add qualities parsing
+            var list = [Transcode]()
+            pointer = try advance(pointer: pointer, after: newline, barrier: nil) // nextline
+            while true {
 
-            return Stream(broadcastID: idString, liveDuration: Int(floatTime), qualities: [])
+                do {
+
+                    let result = try checkSequence(in: pointer, against: videoHeader, barrier: newline)
+                    if result.0 {
+                        pointer = try advance(pointer: pointer, after: newline, barrier: nil) //next line
+
+                        let bandwidth = try checkAndExtract(in: pointer, key: bandwidth, starting: equalStart, ending: comma, deliminator: comma, barrier: newline)
+                        let bwData = Data(bytes: bandwidth)
+                        guard let bandwidthString = String(data: bwData, encoding: .utf8),
+                              let bwInt = Int(bandwidthString) else {
+                            throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
+                        }
+
+                        let video = try checkAndExtract(in: pointer, key: video, starting: equalQuoteStart, ending: quote, deliminator: comma, barrier: newline)
+                        let vData = Data(bytes: video)
+                        guard let vString = String(data: vData, encoding: .utf8) else {
+                            throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
+                        }
+
+                        pointer = try advance(pointer: pointer, after: newline, barrier: nil) //next line
+
+                        let url = try extract(from: pointer, until: newline, barrier: nil)
+                        let urlData = Data(bytes: url)
+                        guard let urlString = String(data: urlData, encoding: .utf8),
+                              let URL = URL(string: urlString) else {
+                            throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
+                        }
+
+                        // @todo: make extract return pointer so that we dont have to traverse everything again
+                        list.append(Transcode(quality: vString, url: URL, bandwidth: bwInt))
+                        pointer = try advance(pointer: pointer, after: newline, barrier: nil)
+                    }
+                } catch UnsafeBoundedPointerError.outOfBounds {
+                    break
+                }
+            }
+
+            // sort by highest quality to lowest
+            list.sort {
+                lhs, rhs  in
+                return lhs.bandwidth > rhs.bandwidth
+            }
+            return Stream(broadcastID: idString, liveDuration: Int(floatTime), transcodes: list)
         }
     }
 
@@ -139,15 +188,15 @@ public struct M3UParser {
 
     /// Extract value from the pointer, until it hit the until value, or it throws error when hitting the barrier
     private static func extract<Element>(from pointer: UnsafeBoundedPointer<Element>,
-                                  until value: Element,
-                                  barrier: Element) throws -> [Element] where Element: Comparable {
+                                         until value: Element,
+                                         barrier: Element?) throws -> [Element] where Element: Comparable {
 
         var pointer = pointer
         var iteration = 0
         var list = [Element]()
         while pointer.pointee != value {
 
-            if pointer.pointee == barrier { throw _ParsingError.barrierHit }
+            if let barrier = barrier, pointer.pointee == barrier { throw _ParsingError.barrierHit }
 
             list.append(pointer.pointee)
 
@@ -213,8 +262,8 @@ internal struct UnsafeBoundedPointer<Element>{
         self.count = count
         self.cursor = 0
     }
+}
 
-    public enum UnsafeBoundedPointerError: Error {
-        case outOfBounds
-    }
+internal enum UnsafeBoundedPointerError: Error {
+    case outOfBounds
 }

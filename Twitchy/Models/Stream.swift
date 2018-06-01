@@ -7,11 +7,18 @@ import Foundation
 
 public struct Stream {
 
-    public typealias Quality = [String: String]
-
     let broadcastID: String
 
     var liveDuration: Int
 
-    let qualities: [Quality]
+    let transcodes: [Transcode]
+}
+
+public struct Transcode {
+
+    public let quality: String
+
+    public let url: URL
+
+    public let bandwidth: Int
 }
