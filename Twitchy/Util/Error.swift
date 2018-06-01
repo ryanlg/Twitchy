@@ -39,7 +39,7 @@ public enum TwitchyError: Error {
         case missingStarting
         case missingEnding
         case conversionFailedAfterExtraction
-        case noSuchKey
+        case noSuchKey(String)
     }
 
     case playlistParsing(reason: ParsingFailureReason)

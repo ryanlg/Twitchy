@@ -9,7 +9,7 @@ public struct Stream {
 
     public typealias Quality = [String: String]
 
-    let broadcastID: Int
+    let broadcastID: String
 
     var liveDuration: Int
 

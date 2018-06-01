@@ -5,173 +5,216 @@
 
 import Foundation
 
+/// A very bad implementation of a M3U parser
 public struct M3UParser {
 
-    private let data: Data
-
-    public init(data: Data) {
-
-        self.data = data
-    }
-
-    public func parseTwitchStreamPlaylist(fromData data: Data) throws -> Stream {
-
-        // #EXTM3U\n : 8 bytes
-        try validateStreamPlaylist(data)
-
-        let header: [UInt8] = [35, 69, 88, 84, 77, 51, 85] // "#EXTM3U"
-
-        let afterHeader = 8
+    /// A parse the Twitch stream playlist
+    public static func parseTwitchStreamPlaylist(fromData data: Data) throws -> Stream {
 
         // unicode
         let sharp: UInt8 = 35
         let newline: UInt8 = 10
         let comma: UInt8 = 44
-        let valueStart: [UInt8] = [61, 34] // "=\""
+        let start: [UInt8] = [61, 34] // "=\""
         let quote: UInt8 = 34 // just a quote
-        let BROADCAST_ID: [UInt8] = [66, 82, 79, 65, 68, 67, 65, 83, 84, 45, 73, 68] // "BROADCAST-ID"
 
+        let header: [UInt8] = [35, 69, 88, 84, 77, 51, 85] // "#EXTM3U"
+        let BROADCAST_ID: [UInt8] = [66, 82, 79, 65, 68, 67, 65, 83, 84, 45, 73, 68] // "BROADCAST-ID"
+        let STREAM_TIME: [UInt8] = [83, 84, 82, 69, 65, 77, 45, 84, 73, 77, 69] //" STREAM-TIME"
 
         // second line, get live duration
-        try data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> Stream in
+        return try data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> Stream in
 
-            var broadcastID: String?
+            var pointer = UnsafeBoundedPointer(base: pointer, count: data.count)
 
-            var pointer = pointer
-
-            // @todo: get rid of this
-            pointer += afterHeader
-
-            // validate
-            let headerCheck = checkSequence(withStartingPointer: pointer, againstArray: header)
+            // ============= HEADER VALIDATION ===========
+            let headerCheck = try checkSequence(in: pointer, against: header, barrier: newline)
             if !headerCheck.0 { throw TwitchyError.playlistParsing(reason: .invalidHeader) }
+            pointer = try advance(pointer: headerCheck.1, after: newline, barrier: nil)
 
+            // ============= Second Line ================
+            pointer = try advance(pointer: pointer, after: sharp, barrier: newline)
 
-            var cursor = afterHeader
-            var goToComma = false
-            while pointer.pointee != newline, cursor < data.count {
+            // ============= Stream time ================
+            let streamTimeResult = try checkAndExtract(in: pointer,
+                                                       key:STREAM_TIME,
+                                                       starting: start,
+                                                       ending: quote,
+                                                       deliminator: comma,
+                                                       barrier: newline)
 
-                cursor += 1
-                pointer += 1
-                
-                if goToComma{
-                    if pointer.pointee != comma {
-                        continue
-                        
-                    } else {
-                        goToComma = false
-                        pointer += 1 // skip the comma
-                    }
-                }
+            let timeData = Data(bytes: streamTimeResult)
+            guard let timeString = String(data: timeData, encoding: .utf8),
+                  let floatTime = Float(timeString) else {
 
-                do {
-                    let result = try checkAndExtract(withStartingPointer: pointer, key: BROADCAST_ID, starting: valueStart, ending: quote)
-
-                    let data = Data(bytes: result)
-                    guard let string = String(data: data, encoding: .utf8) else {
-
-                        throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
-                    }
-
-                    broadcastID = string
-                } catch TwitchyError.playlistParsing(reason: .noSuchKey) {
-                    goToComma = true
-                    continue
-                }
+                throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
             }
 
-            // @todo
-            return Stream(broadcastID: 1, liveDuration: 1, qualities: [])
+            // ============= id ================
+            let id = try checkAndExtract(in: pointer,
+                    key:BROADCAST_ID,
+                    starting: start,
+                    ending: quote,
+                    deliminator: comma,
+                    barrier: newline)
+
+            let idData = Data(bytes: id)
+            guard let idString = String(data: idData, encoding: .utf8) else {
+
+                throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
+            }
+
+            // @todo: add qualities parsing
+
+            return Stream(broadcastID: idString, liveDuration: Int(floatTime), qualities: [])
         }
-
-        return Stream(broadcastID: 1, liveDuration: 1, qualities: [])
     }
 
-    private func validateStreamPlaylist(_ data: Data) throws {
+    /// Check if key is present from the pointer with the value wrapped by starting and ending
+    ///
+    /// If the key is not present at the pointer, it will try to jump to the next deliminator,
+    /// until it reaches the barrier
+    ///
+    /// For example: BROADCAST-ID="12313123132", BROADCAST-ID is the key, =" is starting, " is the ending
+    private static func checkAndExtract<Element> (in pointer: UnsafeBoundedPointer<Element>,
+                                           key: [Element],
+                                           starting: [Element],
+                                           ending: Element,
+                                           deliminator: Element,
+                                           barrier: Element) throws -> [Element] where Element: Comparable{
 
-        let headerSize = 7
-        let header = Data(bytes: [35, 69, 88, 84, 77, 51, 85]) // "#EXTM3U"
+        do {
+            let keyCheck = try checkSequence(in: pointer, against: key, barrier: barrier)
+            if keyCheck.0 {
 
-        guard data.subdata(in: 0..<headerSize) == header else { throw TwitchyError.playlistParsing(reason: .invalidHeader)}
-    }
+                // check if starting deliminator is present
+                let startingCheck = try checkSequence(in: keyCheck.1, against: starting, barrier: barrier)
+                if startingCheck.0 {
 
-    private func checkAndExtract<Element> (withStartingPointer pointer: UnsafePointer<Element>,
-                                                  key: [Element],
-                                                  starting: [Element],
-                                                  ending: Element,
-                                                  noLongerThan: Int = 20) throws -> [Element]
-                                                  where Element: Comparable{
-        let bound = UnsafeBufferPointer(start: pointer, count: 10)
+                    let result = try extract(from: startingCheck.1, until: ending, barrier: barrier)
 
+                    return result
+                } else {
 
-        let keyCheck = checkSequence(withStartingPointer: pointer, againstArray: key)
-        if keyCheck.0 {
-
-            // check if starting deliminator is present
-            let startingCheck = checkSequence(withStartingPointer: keyCheck.1, againstArray: starting)
-            if startingCheck.0 {
-
-                let result = try extract(fromPointer: startingCheck.1, untilValue: ending)
-
-                return result
+                    throw TwitchyError.playlistParsing(reason: .missingStarting)
+                }
             } else {
-                
-                throw TwitchyError.playlistParsing(reason: .missingStarting)
-            }
-        } else {
 
-            throw TwitchyError.playlistParsing(reason: .noSuchKey)
+                // find next deliminator
+                let next = try advance(pointer: pointer, after: deliminator, barrier: barrier)
+
+                // recursive, not a good idea I know
+                return try checkAndExtract(in: next,
+                                           key: key,
+                                           starting: starting,
+                                           ending: ending,
+                                           deliminator: deliminator,
+                                           barrier: barrier)
+            }
+        } catch {
+
+            // any error, no such key present
+            throw TwitchyError.playlistParsing(reason: .noSuchKey("\(key)"))
         }
     }
 
-    private func checkSequence<Element>(withStartingPointer pointer: UnsafePointer<Element>,
-                                               againstArray against: [Element]) -> (Bool, UnsafePointer<Element>)
-                                            where Element: Comparable {
+    /// Check the if the next few characters is the same as the elements in against
+    /// Stops immediately if one doesn't match, or throws error when hitting the barrier
+    ///
+    /// Return: a tuple with the a boolean indicating whether the operation is successful,
+    /// and a pointer pointing to where the method has gone through
+    private static func checkSequence<Element>(in pointer: UnsafeBoundedPointer<Element>,
+                                               against: [Element],
+                                               barrier: Element) throws -> (Bool, UnsafeBoundedPointer<Element>)
+                                               where Element: Comparable {
         var success = true
         var pointer = pointer
         for element in against {
-
-            if element != pointer.pointee { success = false; break } else { pointer += 1 }
+            if element == barrier { throw  _ParsingError.barrierHit }
+            if element != pointer.pointee { success = false; break } else { pointer = try pointer.advanced(by: 1) }
         }
 
         return (success, pointer)
     }
 
-    private func extract<Element>(fromPointer pointer: UnsafePointer<Element>,
-                                         untilValue value: Element,
-                                         noLongerThan: Int = 20) throws -> [Element]
-                                         where Element: Comparable{
+    /// Extract value from the pointer, until it hit the until value, or it throws error when hitting the barrier
+    private static func extract<Element>(from pointer: UnsafeBoundedPointer<Element>,
+                                  until value: Element,
+                                  barrier: Element) throws -> [Element] where Element: Comparable {
 
         var pointer = pointer
         var iteration = 0
         var list = [Element]()
         while pointer.pointee != value {
 
-            // overflow prevention
-            if iteration > noLongerThan { throw TwitchyError.playlistParsing(reason: .missingEnding) }
+            if pointer.pointee == barrier { throw _ParsingError.barrierHit }
 
             list.append(pointer.pointee)
 
             iteration += 1
-            pointer += 1
+            pointer = try pointer.advanced(by: 1)
         }
 
         return list
     }
 
-    private func nextLine<Element>(fromPointer pointer: UnsafePointer<Element>) {
+    /// Advance the pointer until it hits the after value, or throws error when hitting the barrier
+    private static func advance<Element>(pointer: UnsafeBoundedPointer<Element>,
+                                  after: Element,
+                                  barrier: Element?) throws -> UnsafeBoundedPointer<Element> where Element: Comparable {
 
-    }
+        var pointer = pointer
+        while true {
+            if pointer.pointee == barrier { throw _ParsingError.barrierHit }
+            if pointer.pointee == after {
+                pointer = try pointer.advanced(by: 1)
 
-    private func checkBounds<Element>(atPointer pointer: UnsafePointer<Element>) -> Bool {
-
+                if let barrier = barrier, pointer.pointee == barrier { throw _ParsingError.barrierHit }
+                return pointer
+            }
+            pointer = try pointer.advanced(by: 1)
+        }
     }
 }
 
-extension Data {
+internal enum _ParsingError: Error {
 
-    public func pointer<Element>(from: Int, length: Int) -> Element {
+    case barrierHit
+}
 
-        return self.subdata(in: from..<from+length).withUnsafeBytes { $0.pointee }
+/// A pointer that will throw error when advanced out of bounds
+internal struct UnsafeBoundedPointer<Element>{
+
+    private var _pointer: UnsafePointer<Element>
+
+    public var pointee: Element {
+        get {
+            return self._pointer.pointee
+        }
+    }
+
+    // size
+    public let count: Int
+
+    private var cursor: Int
+
+    public mutating func advanced(by distance: Int) throws -> UnsafeBoundedPointer<Element> {
+
+        if self.cursor + distance >= count { throw UnsafeBoundedPointerError.outOfBounds }
+
+        self.cursor += distance; self._pointer += distance
+
+        return self
+    }
+
+    public init(base: UnsafePointer<Element>, count: Int) {
+
+        self._pointer = base
+        self.count = count
+        self.cursor = 0
+    }
+
+    public enum UnsafeBoundedPointerError: Error {
+        case outOfBounds
     }
 }
