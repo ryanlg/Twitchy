@@ -95,13 +95,14 @@ public struct M3UParser {
                         pointer = try advance(pointer: pointer, after: newline, barrier: nil) //next line
 
                         let url = try extract(from: pointer, until: newline, barrier: nil)
-                        let urlData = Data(bytes: url)
+                        let urlData = Data(bytes: url.0)
                         guard let urlString = String(data: urlData, encoding: .utf8),
                               let URL = URL(string: urlString) else {
                             throw TwitchyError.playlistParsing(reason: .conversionFailedAfterExtraction)
                         }
 
-                        // @todo: make extract return pointer so that we dont have to traverse everything again
+                        pointer = url.1
+
                         list.append(Transcode(quality: vString, url: URL, bandwidth: bwInt))
                         pointer = try advance(pointer: pointer, after: newline, barrier: nil)
                     }
@@ -142,7 +143,7 @@ public struct M3UParser {
 
                     let result = try extract(from: startingCheck.1, until: ending, barrier: barrier)
 
-                    return result
+                    return result.0
                 } else {
 
                     throw TwitchyError.playlistParsing(reason: .missingStarting)
@@ -189,7 +190,8 @@ public struct M3UParser {
     /// Extract value from the pointer, until it hit the until value, or it throws error when hitting the barrier
     private static func extract<Element>(from pointer: UnsafeBoundedPointer<Element>,
                                          until value: Element,
-                                         barrier: Element?) throws -> [Element] where Element: Comparable {
+                                         barrier: Element?) throws -> ([Element], UnsafeBoundedPointer<Element>)
+                                         where Element: Comparable {
 
         var pointer = pointer
         var iteration = 0
@@ -204,7 +206,7 @@ public struct M3UParser {
             pointer = try pointer.advanced(by: 1)
         }
 
-        return list
+        return (list, pointer)
     }
 
     /// Advance the pointer until it hits the after value, or throws error when hitting the barrier
