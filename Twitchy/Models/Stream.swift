@@ -7,11 +7,11 @@ import Foundation
 
 public struct Stream {
 
-    let broadcastID: String
+    public let broadcastID: String
 
-    var liveDuration: Int
+    public var liveDuration: Int
 
-    let transcodes: [Transcode]
+    public let transcodes: [Transcode]
 }
 
 public struct Transcode {

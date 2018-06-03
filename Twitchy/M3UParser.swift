@@ -210,7 +210,6 @@ public struct M3UParser {
                                          where Element: Comparable {
 
         var pointer = pointer
-        var iteration = 0
         var list = [Element]()
         while pointer.pointee != value {
 
@@ -218,7 +217,6 @@ public struct M3UParser {
 
             list.append(pointer.pointee)
 
-            iteration += 1
             pointer = try pointer.advanced(by: 1)
         }
 
