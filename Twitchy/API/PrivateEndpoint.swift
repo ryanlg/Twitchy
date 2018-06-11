@@ -10,6 +10,12 @@ enum PrivateEndpoint {
 
     case streamAccessToken(forChannel: String)
     case streamPlaylist(forChannel: String, token: String, signature: String)
+
+    /// Chat records for VODs.
+    /// @params:
+    ///  isSecond: when this is true, offset is the location of the beginning of the chat log, in seconds.
+    ///            when it is false, it is the cursor returned with your previous request.
+    case vodChatReplay(id: String, offset: String, isSecond: Bool)
 }
 
 /// Conform to endpoint
@@ -22,6 +28,8 @@ extension PrivateEndpoint: Endpoint {
                 return URL(string: "https://api.twitch.tv/api")!
             case .streamPlaylist:
                 return URL(string: "https://usher.ttvnw.net/api")!
+            case .vodChatReplay:
+                return URL(string: "https://api.twitch.tv/v5")!
         }
     }
 
@@ -32,6 +40,8 @@ extension PrivateEndpoint: Endpoint {
                 return "/channels/\(channel)/access_token"
             case let .streamPlaylist(forChannel: channel, token: _, signature: _):
                 return "/channel/hls/\(channel).m3u8"
+            case let .vodChatReplay(id: id, offset: _, isSecond: _):
+                return "/videos/\(id)/comments"
         }
     }
 
@@ -47,6 +57,16 @@ extension PrivateEndpoint: Endpoint {
                     "token": token,
                     "sig": sig
                 ])
+            case let .vodChatReplay(id: _, offset: offset, isSecond: isSecond):
+                if isSecond {
+                    return .parameters(parameters: [
+                        "content_offset_seconds": offset
+                    ])
+                } else {
+                    return .parameters(parameters: [
+                        "cursor": offset
+                    ])
+                }
         }
     }
 
@@ -63,6 +83,10 @@ extension PrivateEndpoint: Endpoint {
         switch self {
             case .streamAccessToken, .streamPlaylist:
                 return [:]
+            default:
+                return [
+                    "Client ID": Keys.shared.clientID
+                ]
         }
     }
 }
