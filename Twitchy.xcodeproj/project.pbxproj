@@ -18,12 +18,14 @@
 		35A4B6957B3C0E56904BD4B7 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */; };
 		35A4B6AD91BEE7D88509CFFA /* Kraken+Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B2B4829E5560B8431410 /* Kraken+Channels.swift */; };
 		35A4B6F766455AB134E3CFAF /* Private+AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BC22CFA67B2107C4B0AA /* Private+AccessToken.swift */; };
+		35A4B78376E4E8F6E9122102 /* Private+VOD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B68D10DA648E156B8357 /* Private+VOD.swift */; };
 		35A4B86AB097F94A7F24907D /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B712D0EA08B4E75F80EA /* Channel.swift */; };
 		35A4BA15078C608830DC3788 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BB89567E7B4A155FA007 /* Options.swift */; };
 		35A4BB4C21679FE2A2510FC8 /* Private+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B2538DC456E0F2EF10BD /* Private+Helpers.swift */; };
 		35A4BB60E1E85898AD2501AB /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B16CB91EF54BD9A67059 /* Keys.swift */; };
 		35A4BC7DBA5C949864FF3057 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BEC86069BD4CD9EA6EC7 /* Error.swift */; };
 		35A4BD57CD7264CCDA6C842E /* KrakenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */; };
+		35A4BD9CEFB43A36B56BEEC2 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4BA33A85160E24EAA4ACE /* Chat.swift */; };
 		35A4BDBA273F34E1B362F887 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B96D08481FA0EF391C79 /* Game.swift */; };
 		35A4BE069874DF7C185A77C8 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B1A1553D7723343D4FE6 /* Provider.swift */; };
 		35A4BEA9A28EE6FC997152AD /* Kraken+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4B7E63E831CF2E8121989 /* Kraken+Helpers.swift */; };
@@ -48,12 +50,14 @@
 		35A4B2E10B8AB1085098C251 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		35A4B3931E54CA7212ACDB3E /* KrakenEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KrakenEndpoint.swift; sourceTree = "<group>"; };
 		35A4B4199EDFA2AB3C45735C /* Private.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Private.swift; sourceTree = "<group>"; };
+		35A4B68D10DA648E156B8357 /* Private+VOD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Private+VOD.swift"; sourceTree = "<group>"; };
 		35A4B6A2AEE8233431A61743 /* Kraken+Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kraken+Auth.swift"; sourceTree = "<group>"; };
 		35A4B6A7CB8EDC17FDE1F5EA /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		35A4B712D0EA08B4E75F80EA /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		35A4B79D4A8198A820B6DC66 /* URL+Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Endpoint.swift"; sourceTree = "<group>"; };
 		35A4B7E63E831CF2E8121989 /* Kraken+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kraken+Helpers.swift"; sourceTree = "<group>"; };
 		35A4B96D08481FA0EF391C79 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		35A4BA33A85160E24EAA4ACE /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		35A4BAF466BECF6751079B1B /* URLRequest+ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+ParameterEncoding.swift"; sourceTree = "<group>"; };
 		35A4BB8549747D8E097E3896 /* M3UParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M3UParser.swift; sourceTree = "<group>"; };
 		35A4BB89567E7B4A155FA007 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 				35A4B4199EDFA2AB3C45735C /* Private.swift */,
 				35A4BC22CFA67B2107C4B0AA /* Private+AccessToken.swift */,
 				35A4B2538DC456E0F2EF10BD /* Private+Helpers.swift */,
+				35A4B68D10DA648E156B8357 /* Private+VOD.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				35A4B712D0EA08B4E75F80EA /* Channel.swift */,
 				35A4BD91C8743883DA6B7FE1 /* AccessToken.swift */,
 				35A4B1CE8D2A2D6FBBC5BFB0 /* Stream.swift */,
+				35A4BA33A85160E24EAA4ACE /* Chat.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +335,8 @@
 				35A4BB4C21679FE2A2510FC8 /* Private+Helpers.swift in Sources */,
 				35A4B30C8EF0E1D9A7B02929 /* M3UParser.swift in Sources */,
 				35A4B09FD51A03AD82BA9147 /* Stream.swift in Sources */,
+				35A4B78376E4E8F6E9122102 /* Private+VOD.swift in Sources */,
+				35A4BD9CEFB43A36B56BEEC2 /* Chat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
