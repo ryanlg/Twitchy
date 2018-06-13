@@ -83,9 +83,9 @@ extension PrivateEndpoint: Endpoint {
         switch self {
             case .streamAccessToken, .streamPlaylist:
                 return [:]
-            default:
+            case .vodChatReplay:
                 return [
-                    "Client ID": Keys.shared.clientID
+                    "client-id": Keys.shared.clientID
                 ]
         }
     }

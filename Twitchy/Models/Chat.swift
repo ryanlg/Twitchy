@@ -28,10 +28,10 @@ public struct Comment: Decodable {
     public let id: String?
     public let created: String?
     public let updated: String?
-    public let channelID: Int?
+    public let channelID: String?
     public let contentType: String?
-    public let contentID: Int?
-    public let contentOffsetSeconds: Int?
+    public let contentID: String?
+    public let contentOffsetSeconds: Float?
     public let commenter: Commenter?
     public let source: String?
     public let state: String?
@@ -59,10 +59,10 @@ public struct Comment: Decodable {
         id = try values.decodeIfPresent(String.self, forKey: .id)
         created = try values.decodeIfPresent(String.self, forKey: .created)
         updated = try values.decodeIfPresent(String.self, forKey: .updated)
-        channelID = try values.decodeIfPresent(Int.self, forKey: .channelID)
+        channelID = try values.decodeIfPresent(String.self, forKey: .channelID)
         contentType = try values.decodeIfPresent(String.self, forKey: .contentType)
-        contentID = try values.decodeIfPresent(Int.self, forKey: .contentID)
-        contentOffsetSeconds = try values.decodeIfPresent(Int.self, forKey: .contentOffsetSeconds)
+        contentID = try values.decodeIfPresent(String.self, forKey: .contentID)
+        contentOffsetSeconds = try values.decodeIfPresent(Float.self, forKey: .contentOffsetSeconds)
         commenter = try Commenter(from: decoder)
         source = try values.decodeIfPresent(String.self, forKey: .source)
         state = try values.decodeIfPresent(String.self, forKey: .state)
@@ -74,7 +74,7 @@ public struct Comment: Decodable {
 public struct Commenter: Decodable {
 
     public let displayName: String?
-    public let id: Int?
+    public let id: String?
     public let name: String?
     public let type: String?
     public let bio: String?
@@ -97,7 +97,7 @@ public struct Commenter: Decodable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         displayName = try values.decodeIfPresent(String.self, forKey: .displayName)
-        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        id = try values.decodeIfPresent(String.self, forKey: .id)
         name = try values.decodeIfPresent(String.self, forKey: .name)
         type = try values.decodeIfPresent(String.self, forKey: .type)
         bio = try values.decodeIfPresent(String.self, forKey: .bio)
@@ -137,9 +137,9 @@ public struct Message: Decodable {
     }
 }
 
-struct Emoticons: Decodable {
+public struct Emoticons: Decodable {
 
-    public let id: Int?
+    public let id: String?
     public let begin: Int?
     public let end: Int?
 
@@ -152,7 +152,7 @@ struct Emoticons: Decodable {
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        id = try values.decodeIfPresent(String.self, forKey: .id)
         begin = try values.decodeIfPresent(Int.self, forKey: .begin)
         end = try values.decodeIfPresent(Int.self, forKey: .end)
     }
@@ -178,7 +178,7 @@ public struct Fragments: Decodable {
 
 public struct Emoticon: Decodable {
 
-    public let id : Int?
+    public let id : String?
     public let setID : Int?
 
     enum CodingKeys: String, CodingKey {
@@ -189,7 +189,7 @@ public struct Emoticon: Decodable {
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        id = try values.decodeIfPresent(String.self, forKey: .id)
         setID = try values.decodeIfPresent(Int.self, forKey: .setID)
     }
 }
@@ -197,7 +197,7 @@ public struct Emoticon: Decodable {
 public struct UserBadge: Decodable {
 
     public let id : String?
-    public let version : Int?
+    public let version : String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -208,6 +208,6 @@ public struct UserBadge: Decodable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decodeIfPresent(String.self, forKey: .id)
-        version = try values.decodeIfPresent(Int.self, forKey: .version)
+        version = try values.decodeIfPresent(String.self, forKey: .version)
     }
 }
